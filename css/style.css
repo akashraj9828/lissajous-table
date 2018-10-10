@@ -12,7 +12,7 @@ body{
  
 }
 div#instructions{
-    text-align: center;
+    text-align: left;
 }
  canvas#game{
     position: relative;
