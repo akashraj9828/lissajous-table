@@ -18,7 +18,7 @@ function setup() {
 
   if (randomize) {
     ran.splice(0, ran.length)
-    for (var i = 0; i < dim*dim; i++) {
+    for (var i = 0; i < dim; i++) {
       var r = random(10)
       ran.push(r / 10);
     }
@@ -52,13 +52,10 @@ function draw() {
     }
 
     if (random)
-    var ang1 = angle * (ran[i] * (i+1))  +ran[i]
+    var ang = angle * (ran[i] * (i+1))  +ran[i]
     else
-    var ang1 = angle * (i + 1)
-    if (random)
-    var ang2 = angle * (ran[i] * (i+1))  +ran[i]
-    else
-    var ang2 = angle * (i + 1)
+    var ang = angle * (i + 1)
+   
 
     var x = r * cos(ang);
     var y = r * sin(ang);
