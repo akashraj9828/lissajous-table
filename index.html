@@ -1,25 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <script src="js/p5.min.js"></script>
-  <script src="js/p5.dom.min.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="images/favicon.png" type="image/png">
 
+
+    <meta name="author" content="Akash Raj">
+    <meta name="description" content="Lissajous Pattern. Written in p5js">
+
+
+    <meta property="og:image" content="images/favicon.png">
+    <meta property="og:description" content="Lissajous Pattern. Written in p5js">
+    <meta property="og:title" content="Lissajous Pattern">
+
+
+    <meta property="twitter:title" content="Lissajous Pattern">
+
+
+    <title>Lissajous Pattern</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
+    <!-- <script src="p5.min.js"></script> -->
+    <style>
+      *{
+        text-align: center;
+      }
+      span {
+        font-size: 25px;
+      }
+
+      button {
+        font-size: 15px;
+        margin: 5px;
+        font-weight: 700;
+        border-radius: 4px;
+        background: khaki;
+      }
+
+      #instructions h5 {
+        margin-right: 15px;
+      }
+
+      #logo {
+        margin: auto;
+        min-width: 300px;
+        width: 40%;
+        height: auto;
+      }
+    </style>
+  </head>
+
+  <body style="background: black;color: white; text-align: center; overflow: ;">
+    <img id="logo" src="images/logo.png">
+
+
+    <div id="instructions" >
+      <span> <button type="button" id="p_pause" onclick="p_pause()">Play/Pause</button></span>
+      <span> <button type="button" id="change_animation" onclick="change_animation()">Switch Animation</button></span>
+      <span> <button type="button" id="inc_dec" onclick="inc_dec(1)">Increase size</button></span>
+      <span> <button type="button" id="inc_dec_neg" onclick="inc_dec(-1)">Decrease size</button></span>
+      <span> <button type="button" id="reset" onclick="reset()">Reset</button></span>
+      <span> <button type="button" id="random_" onclick="random_()">Random new</button></span>
+      <span> <button type="button" id="save_img" onclick="save_img()">Save Image</button></span>
+      <!-- <h5>press p to pause the animation </h5>
+          <h5>press d to swith between animation mechanics</h5>
+          <h5>press +/- to increase/decrease samples</h5>
+          <h5>press x to reset board</h5>
+          <h5>press r to toggle random rotation</h5> -->
+    </div>
+    <div id="game-container"></div>
+    <!-- <br> -->
+    <!-- <span style="margin-right:10px"> <input type="checkbox" id="coloured"> Coloured </span>
+    <span style="margin-right:10px"> <input type="checkbox" id="crazy" checked> Go crazy </span>
+    <span style="margin-right:10px"> <input type="checkbox" id="jazz"> Jazz mode </span>
+    <span style="margin-right:10px"> <input type="checkbox" id="invert" checked> Invert </span>
+    <span style="margin-right:10px"> <input type="checkbox" id="circles" checked> Circles </span>
+    <span style="margin-right:10px">Weirdness slider: <input type="range" id="weird_slider" value=60></span> -->
+    <!-- <br> -->
+    <!-- <span style=""> <button type="button" id="random_btn" onclick="randomize()">Randomize</button></span> -->
+
+  </body>
   <script src="sketch.js"></script>
-  <!-- <script src="snake.js"></script> -->
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-  <div id="instructions">
-    <h5>press p to pause the animation </h5>
-    <h5>press d to swith between animation mechanics</h5>
-    <h5>press +/- to increase/decrease samples</h5>
-    <h5>press x to reset board</h5>
-    <h5>press r to toggle random rotation</h5>
-  </div>
-  <div id="game-container"></div>
-</body>
+  <script>
+    // (function () { var script = document.createElement('script'); script.onload = function () { var stats = new Stats(); stats.domElement.style.cssText = 'position:fixed;left:0;top:0;z-index:10000'; document.body.appendChild(stats.domElement); requestAnimationFrame(function loop() { stats.update(); requestAnimationFrame(loop) }); }; script.src = 'stats.js'; document.head.appendChild(script); })()
+  </script>
 
 </html>

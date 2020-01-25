@@ -7,15 +7,15 @@ body{
     float: right;
 } */
  div#game-container{
-    background-color: darkslategrey;
-    width: fit-content;
+    /* background-color: darkslategrey; */
+    /* width: fit-content; */
  
 }
 div#instructions{
-    text-align: left;
+    /* text-align: left; */
 }
  canvas#game{
-    position: relative;
+    /* position: relative; */
     padding: 8px;
     background: #786e6e;
     border: inset;

@@ -3,15 +3,18 @@ var w, h, canvas, looping = true;
 var angle = 0.0;
 var posx = [];
 var posy = [];
+var old_posx = [];
+var old_posy = [];
 var show = false;
 var ran = [];
 var randomize = true;
+
 function setup() {
 
-  len = windowHeight / (dim + 1)
+  len = (windowHeight-100) / (dim + 1)
   w = floor(dim * len)
   canvas = createCanvas(w, w);
-  canvas.position((windowWidth - w) / 2, (windowHeight - w) / 2)
+  // canvas.position((windowWidth - w) / 2, (windowHeight - w) / 2)
   canvas.id("game")
   canvas.parent("game-container")
 
@@ -26,6 +29,7 @@ function setup() {
   }
 
 }
+
 function draw() {
   if (show)
     background(51);
@@ -52,10 +56,10 @@ function draw() {
     }
 
     if (random)
-    var ang = angle * (ran[i] * (i+1))  +ran[i]
+      var ang = angle * (ran[i] * (i + 1)) + ran[i]
     else
-    var ang = angle * (i + 1)
-   
+      var ang = angle * (i + 1)
+
 
     var x = r * cos(ang);
     var y = r * sin(ang);
@@ -80,15 +84,33 @@ function draw() {
 
   }
   strokeWeight(6)
-  // draww();
+
+  // console.log(posx);
+
   if (!show) {
-    strokeWeight(0.5)
+    strokeWeight(.1)
+
+    // let noiseVal = noise(frameCount);
+    // console.log(noiseVal);
+    
+    // stroke(noiseVal*100,noiseVal*255,noiseVal*120);
     stroke(250)
     for (i = 0; i < dim; i++) {
       for (j = 0; j < dim; j++) {
-        point(posx[i], posy[j])
+        // let easing=0.1
+        // let xxx=old_posx[i]
+        // let yyy=old_posy[j]
+        // let targetX = posx[i]
+        // let targetY = posy[j]
+        // xxx += (targetX - old_posx[i]) * easing;
+        // yyy += (targetY - old_posy[j]) * easing;
+        // line(targetX,targetY,xxx, yyy)
+        line(old_posx[i], old_posy[j], posx[i], posy[j])
+        // point(posx[i], posy[j])
       }
     }
+    old_posx = posx;
+    old_posy = posy;
     posx.splice(0, posx.length)
     posy.splice(0, posy.length)
   }
@@ -100,75 +122,87 @@ function draw() {
   //   clear()
   // }
   angle += 0.02;
+
+  // push()
+  // strokeWeight(0)
+  // textAlign(RIGHT)
+  // textSize(20)
+  // fill(255, 255, 255, 100)
+  // text(frameRate().toFixed(0), width-10, 20)
+  // pop()
+
 }
 
-function draww() {
-  strokeWeight(2)
-  stroke(250)
 
-  for (i = 0; i < posx.length; i++) {
-    // beginShape();
-    for (j = 0; j < posy.length; j++) {
-
-      // vertex(posx[i], posy[j])
-
-      point(posx[i], posy[j])
-    }
-    // endShape();
+function p_pause(){
+  if (looping) {
+    looping = false;
+    noLoop()
+  } else {
+    looping = true;
+    loop()
   }
-
 }
 
+function change_animation(){
+  if (show) {
+    show = false;
+  } else {
+    show = true;
+  }
+  clear();
+}
+
+function reset() {
+  
+  show = false;
+  clear();
+  setup()
+  draw()
+
+}
+function save_img(){
+  saveCanvas("lissajous",'png')
+}
+
+function inc_dec(v=1){
+  dim+=v;
+  clear();
+  setup()
+  draw()
+}
+
+function randomize_(){
+  if (randomize) {
+    randomize = false;
+  } else {
+    randomize = true;
+  }
+  clear();
+  setup()
+  draw()
+}
 function keyPressed() {
   if (key === 'p' || key === 'P') {
-    if (looping) {
-      looping = false;
-      noLoop()
-    } else {
-      looping = true;
-      loop()
-    }
+    p_pause()
   }
   if (key === 'd' || key === 'D') {
-    if (show) {
-      show = false;
-    } else {
-      show = true;
-    }
-    clear();
+    change_animation()
   }
   if (key === 'x' || key === 'X') {
-
-    show = false;
-    clear();
-    setup()
-    draw()
-
+reset()
   }
   if (key === '+' || key === '=') {
 
-    dim++;
-    clear();
-    setup()
-    draw()
-
+   inc_dec(1)
+   
   }
   if (key === '-' || key === '_') {
+    inc_dec(-1)
 
-    dim--;
-    clear();
-    setup()
-    draw()
 
   }
   if (key === 'r' || key === 'R') {
-    if (randomize) {
-      randomize = false;
-    } else {
-      randomize = true;
-    }
-    clear();
-    setup()
-    draw()
+    randomize_()
   }
 }
