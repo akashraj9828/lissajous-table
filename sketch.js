@@ -10,8 +10,13 @@ var ran = [];
 var randomize = true;
 
 function setup() {
+  smooth()
+  lim=floor(min(windowHeight,windowWidth))
+  len = (lim-100) / (dim + 1)
+  if(lim==floor(windowWidth)){
+    len = (lim) / (dim + 1)
 
-  len = (windowHeight-100) / (dim + 1)
+  }
   w = floor(dim * len)
   canvas = createCanvas(w, w);
   // canvas.position((windowWidth - w) / 2, (windowHeight - w) / 2)
